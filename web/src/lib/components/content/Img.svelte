@@ -11,11 +11,11 @@
 		w: 500,
 		img: `${optimazerPrefix}width=1600,quality=80,format=webp/${src}`,
 		webp: [
-			{ src: `${optimazerPrefix}width=1000,quality=60,format=webp/${src}`, w: 1000 },
+			{ src: `${optimazerPrefix}width=500,quality=70,format=webp/${src}`, w: 1000 },
 			{ src: `${optimazerPrefix}width=500,quality=50,format=webp/${src}`, w: 500 }
 		],
 		jpeg: [
-			{ src: `${optimazerPrefix}width=1000,quality=60,format=jpeg/${src}`, w: 1000 },
+			{ src: `${optimazerPrefix}width=500,quality=70,format=jpeg/${src}`, w: 1000 },
 			{ src: `${optimazerPrefix}width=500,quality=50,format=jpeg/${src}`, w: 500 }
 		],
 		failback: src,
