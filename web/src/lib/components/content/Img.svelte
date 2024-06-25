@@ -12,6 +12,7 @@
 		'vertical-align': 'middle'
 	};
 
+	// TODO: DRY
 	const formatToHTMLStyleFromObject = (styleObj: Record<string, string>) => {
 		return Object.entries(styleObj).reduce(
 			(acc, [key, value]) => `${acc} ${key}: ${value};`,
@@ -24,7 +25,6 @@
 	const optimazerPrefix = 'https://nostr-image-optimizer.ocknamo.com/image/';
 
 	let imageSrc: ImageSrc = {
-		w: 500,
 		img: `${optimazerPrefix}width=1280,quality=80,format=webp/${src}`,
 		webp: [
 			{ src: `${optimazerPrefix}width=1280,quality=70,format=webp/${src}`, w: 1280 },
@@ -38,8 +38,7 @@
 		],
 		failback: src,
 		alt: src,
-		placeholder: { dataUri: undefined, color: '#c5c5c5' },
-		blur: true
+		blur: false
 	};
 </script>
 
