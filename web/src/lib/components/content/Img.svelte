@@ -9,14 +9,16 @@
 
 	let imageSrc: ImageSrc = {
 		w: 500,
-		img: `${optimazerPrefix}width=1600,quality=80,format=webp/${src}`,
+		img: `${optimazerPrefix}width=1280,quality=80,format=webp/${src}`,
 		webp: [
-			{ src: `${optimazerPrefix}width=1000,quality=70,format=webp/${src}`, w: 1000 },
-			{ src: `${optimazerPrefix}width=500,quality=50,format=webp/${src}`, w: 500 }
+			{ src: `${optimazerPrefix}width=1280,quality=70,format=webp/${src}`, w: 1280 },
+			{ src: `${optimazerPrefix}width=640,quality=50,format=webp/${src}`, w: 640 },
+			{ src: `${optimazerPrefix}width=320,quality=50,format=webp/${src}`, w: 320 }
 		],
 		jpeg: [
-			{ src: `${optimazerPrefix}width=1000,quality=70,format=jpeg/${src}`, w: 1000 },
-			{ src: `${optimazerPrefix}width=500,quality=50,format=jpeg/${src}`, w: 500 }
+			{ src: `${optimazerPrefix}width=1280,quality=70,format=jpeg/${src}`, w: 1280 },
+			{ src: `${optimazerPrefix}width=640,quality=50,format=jpeg/${src}`, w: 640 },
+			{ src: `${optimazerPrefix}width=320,quality=50,format=jpeg/${src}`, w: 320 }
 		],
 		failback: src,
 		alt: src,
