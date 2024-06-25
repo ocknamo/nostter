@@ -4,6 +4,7 @@
 	import { metadataStore } from '$lib/cache/Events';
 	import UserStatus from './UserStatus.svelte';
 	import CreatedAt from './CreatedAt.svelte';
+	import Picture from './content/Picture.svelte';
 
 	export let item: Item;
 	export let createdAtFormat: 'auto' | 'time' = 'auto';
@@ -15,7 +16,7 @@
 <article class="timeline-item">
 	<div>
 		<a href="/{nip19.npubEncode(item.event.pubkey)}">
-			<img class="picture" src={metadata?.picture ?? robohash(item.event.pubkey)} alt="" />
+			<Picture src={metadata?.picture ?? robohash(item.event.pubkey)} />
 		</a>
 		<div class="icon">
 			<slot name="icon" />
@@ -44,14 +45,6 @@
 	article {
 		display: flex;
 		flex-direction: row;
-	}
-
-	.picture {
-		width: 48px;
-		height: 48px;
-		border-radius: 50%;
-		margin-right: 12px;
-		object-fit: cover;
 	}
 
 	.icon {
