@@ -24,14 +24,12 @@
 
 	let imageSrc: ImageSrc = {
 		w: 48,
-		img: `${optimazerPrefix}width=120,quality=80,format=webp/${src}`,
+		img: `${optimazerPrefix}width=120,quality=70,format=webp/${src}`,
 		webp: [
 			{ src: `${optimazerPrefix}width=120,quality=70,format=webp/${src}`, w: 120 },
-			{ src: `${optimazerPrefix}width=48,quality=50,format=webp/${src}`, w: 48 }
 		],
 		jpeg: [
 			{ src: `${optimazerPrefix}width=120,quality=70,format=jpeg/${src}`, w: 120 },
-			{ src: `${optimazerPrefix}width=48,quality=50,format=jpeg/${src}`, w: 48 }
 		],
 		failback: src,
 		alt: 'users picture icon',
