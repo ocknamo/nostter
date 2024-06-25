@@ -3,6 +3,22 @@
 	export let src: string;
 	export let pathname: string;
 
+	const imgStyleObj = {
+		'max-width': 'calc(100% - 1.5em)',
+		'max-height': '20em',
+		margin: ' 0.5em',
+		border: '1px solid lightgray',
+		'border-radius': '5px',
+		'vertical-align': 'middle'
+	};
+
+	const formatToHTMLStyleFromObject = (styleObj: Record<string, string>) => {
+		return Object.entries(styleObj).reduce(
+			(acc, [key, value]) => `${acc} ${key}: ${value};`,
+			''
+		);
+	};
+
 	// PoC
 	// TODO: set from config
 	const optimazerPrefix = 'https://nostr-image-optimizer.ocknamo.com/image/';
@@ -28,15 +44,7 @@
 </script>
 
 {#if /\.(avif|jpg|jpeg|png|webp)$/i.test(pathname)}
-	<Image src={imageSrc} style="max-width: 100%;max-height: 100%;" />
+	<Image src={imageSrc} style={formatToHTMLStyleFromObject(imgStyleObj)} />
 {:else if /\.(apng|gif|bmp)$/i.test(pathname)}
-	<img {src} alt={src} />
+	<img style={formatToHTMLStyleFromObject(imgStyleObj)} {src} alt={src} />
 {/if}
-
-<style>
-	img {
-		width: 100%;
-		max-height: 260px;
-		object-fit: cover;
-	}
-</style>

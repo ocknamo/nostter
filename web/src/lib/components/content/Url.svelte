@@ -86,16 +86,9 @@
 {/if}
 
 <style>
-	img,
 	video {
 		max-width: calc(100% - 1.5em);
 		max-height: 20em;
 		margin: 0.5em;
-	}
-
-	img {
-		border: 1px solid lightgray;
-		border-radius: 5px;
-		vertical-align: middle;
 	}
 </style>
