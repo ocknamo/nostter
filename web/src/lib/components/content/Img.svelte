@@ -5,6 +5,7 @@
 
 	const imgStyleObj = {
 		'max-width': 'calc(100% - 1.5em)',
+		'min-width': '50%',
 		'max-height': '20em',
 		margin: ' 0.5em',
 		border: '1px solid lightgray',
