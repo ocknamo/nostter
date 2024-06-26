@@ -16,7 +16,7 @@
 <article class="timeline-item">
 	<div>
 		<a href="/{nip19.npubEncode(item.event.pubkey)}">
-			<Picture src={metadata?.picture ?? robohash(item.event.pubkey)} />
+			<Picture src={metadata?.picture} pubkey={item.event.pubkey} />
 		</a>
 		<div class="icon">
 			<slot name="icon" />
