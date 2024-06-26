@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { nip19 } from 'nostr-tools';
-	import { robohash, type EventItem, type Item, alternativeName } from '$lib/Items';
+	import { type EventItem, type Item, alternativeName } from '$lib/Items';
 	import { metadataStore } from '$lib/cache/Events';
 	import UserStatus from './UserStatus.svelte';
 	import CreatedAt from './CreatedAt.svelte';
@@ -11,12 +11,20 @@
 
 	$: eventItem = item as EventItem;
 	$: metadata = $metadataStore.get(eventItem.event.pubkey);
+
+	const pictureStyle = {
+		width: '48px',
+		height: '48px',
+		'border-radius': '50%',
+		'margin-right': '12px',
+		'object-fit': 'cover'
+	};
 </script>
 
 <article class="timeline-item">
 	<div>
 		<a href="/{nip19.npubEncode(item.event.pubkey)}">
-			<Picture src={metadata?.picture} pubkey={item.event.pubkey} />
+			<Picture src={metadata?.picture} pubkey={item.event.pubkey} style={pictureStyle} />
 		</a>
 		<div class="icon">
 			<slot name="icon" />
