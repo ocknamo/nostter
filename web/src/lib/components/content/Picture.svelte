@@ -33,7 +33,7 @@
 		],
 		failback: src,
 		alt: 'users picture icon',
-		blur: false
+		blur: true
 	};
 </script>
 
