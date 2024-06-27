@@ -11,7 +11,7 @@
 		height,
 		'border-radius': '50%',
 		'object-fit': 'cover',
-		'vertical-align': 'middle'
+		'vertical-align': 'text-bottom'
 	};
 </script>
 
