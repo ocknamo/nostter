@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { formatStyleFromObject } from '$lib/styles/FormatStyleFromObject';
 	import { Image, type ImageSrc } from 'svelte-remote-image';
 	export let src: string;
 	export let pathname: string;
@@ -11,14 +12,6 @@
 		border: '1px solid lightgray',
 		'border-radius': '5px',
 		'vertical-align': 'middle'
-	};
-
-	// TODO: DRY
-	const formatToHTMLStyleFromObject = (styleObj: Record<string, string>) => {
-		return Object.entries(styleObj).reduce(
-			(acc, [key, value]) => `${acc} ${key}: ${value};`,
-			''
-		);
 	};
 
 	// PoC
@@ -44,7 +37,7 @@
 </script>
 
 {#if /\.(avif|jpg|jpeg|png|webp)$/i.test(pathname)}
-	<Image src={imageSrc} style={formatToHTMLStyleFromObject(imgStyleObj)} />
+	<Image src={imageSrc} style={formatStyleFromObject(imgStyleObj)} />
 {:else if /\.(apng|gif|bmp)$/i.test(pathname)}
-	<img style={formatToHTMLStyleFromObject(imgStyleObj)} {src} alt={src} />
+	<img style={formatStyleFromObject(imgStyleObj)} {src} alt={src} />
 {/if}

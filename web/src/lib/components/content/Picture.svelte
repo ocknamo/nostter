@@ -1,17 +1,10 @@
 <script lang="ts">
 	import { robohash } from '$lib/Items';
+	import { formatStyleFromObject } from '$lib/styles/FormatStyleFromObject';
 	import { Image, type ImageSrc } from 'svelte-remote-image';
 	export let src: string | undefined = undefined;
 	export let pubkey: string;
 	export let style = {};
-
-	// TODO: DRY
-	const formatToHTMLStyleFromObject = (styleObj: Record<string, string>) => {
-		return Object.entries(styleObj).reduce(
-			(acc, [key, value]) => `${acc} ${key}: ${value};`,
-			''
-		);
-	};
 
 	// PoC
 	// TODO: set from config
@@ -41,4 +34,4 @@
 		  } as ImageSrc);
 </script>
 
-<Image src={imageSrc} style={formatToHTMLStyleFromObject(style)} />
+<Image src={imageSrc} style={formatStyleFromObject(style)} />
