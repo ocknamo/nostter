@@ -1,14 +1,11 @@
 <script lang="ts">
+	import { imageOptimazerUrl } from '$lib/Constants';
 	import { robohash } from '$lib/Items';
 	import { formatStyleFromObject } from '$lib/styles/FormatStyleFromObject';
 	import { Image, type ImageSrc } from 'svelte-remote-image';
 	export let src: string | undefined = undefined;
 	export let pubkey: string;
 	export let style = {};
-
-	// PoC
-	// TODO: set from config
-	const optimazerPrefix = 'https://nostr-image-optimizer.ocknamo.com/image/';
 
 	$: imageSrc = !src
 		? {
@@ -17,16 +14,16 @@
 				alt: ''
 		  }
 		: ({
-				img: `${optimazerPrefix}width=120,quality=70,format=webp/${src}`,
+				img: `${imageOptimazerUrl}width=120,quality=70,format=webp/${src}`,
 				webp: [
-					{ src: `${optimazerPrefix}width=32,quality=50,format=webp/${src}`, w: 32 },
-					{ src: `${optimazerPrefix}width=64,quality=70,format=webp/${src}`, w: 64 },
-					{ src: `${optimazerPrefix}width=120,quality=70,format=webp/${src}`, w: 120 }
+					{ src: `${imageOptimazerUrl}width=32,quality=50,format=webp/${src}`, w: 32 },
+					{ src: `${imageOptimazerUrl}width=64,quality=70,format=webp/${src}`, w: 64 },
+					{ src: `${imageOptimazerUrl}width=120,quality=70,format=webp/${src}`, w: 120 }
 				],
 				jpeg: [
-					{ src: `${optimazerPrefix}width=32,quality=50,format=webp/${src}`, w: 32 },
-					{ src: `${optimazerPrefix}width=64,quality=70,format=webp/${src}`, w: 64 },
-					{ src: `${optimazerPrefix}width=120,quality=70,format=jpeg/${src}`, w: 120 }
+					{ src: `${imageOptimazerUrl}width=32,quality=50,format=webp/${src}`, w: 32 },
+					{ src: `${imageOptimazerUrl}width=64,quality=70,format=webp/${src}`, w: 64 },
+					{ src: `${imageOptimazerUrl}width=120,quality=70,format=jpeg/${src}`, w: 120 }
 				],
 				failback: src,
 				alt: '',

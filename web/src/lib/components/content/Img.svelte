@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { imageOptimazerUrl } from '$lib/Constants';
 	import { formatStyleFromObject } from '$lib/styles/FormatStyleFromObject';
 	import { Image, type ImageSrc } from 'svelte-remote-image';
 	export let src: string;
@@ -14,21 +15,17 @@
 		'vertical-align': 'middle'
 	};
 
-	// PoC
-	// TODO: set from config
-	const optimazerPrefix = 'https://nostr-image-optimizer.ocknamo.com/image/';
-
 	let imageSrc: ImageSrc = {
-		img: `${optimazerPrefix}width=1280,quality=80,format=webp/${src}`,
+		img: `${imageOptimazerUrl}width=1280,quality=80,format=webp/${src}`,
 		webp: [
-			{ src: `${optimazerPrefix}width=1280,quality=70,format=webp/${src}`, w: 1280 },
-			{ src: `${optimazerPrefix}width=640,quality=50,format=webp/${src}`, w: 640 },
-			{ src: `${optimazerPrefix}width=320,quality=50,format=webp/${src}`, w: 320 }
+			{ src: `${imageOptimazerUrl}width=1280,quality=70,format=webp/${src}`, w: 1280 },
+			{ src: `${imageOptimazerUrl}width=640,quality=50,format=webp/${src}`, w: 640 },
+			{ src: `${imageOptimazerUrl}width=320,quality=50,format=webp/${src}`, w: 320 }
 		],
 		jpeg: [
-			{ src: `${optimazerPrefix}width=1280,quality=70,format=jpeg/${src}`, w: 1280 },
-			{ src: `${optimazerPrefix}width=640,quality=50,format=jpeg/${src}`, w: 640 },
-			{ src: `${optimazerPrefix}width=320,quality=50,format=jpeg/${src}`, w: 320 }
+			{ src: `${imageOptimazerUrl}width=1280,quality=70,format=jpeg/${src}`, w: 1280 },
+			{ src: `${imageOptimazerUrl}width=640,quality=50,format=jpeg/${src}`, w: 640 },
+			{ src: `${imageOptimazerUrl}width=320,quality=50,format=jpeg/${src}`, w: 320 }
 		],
 		failback: src,
 		alt: src,
