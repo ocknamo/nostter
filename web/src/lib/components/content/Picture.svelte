@@ -14,12 +14,12 @@
 				alt: ''
 		  }
 		: ({
-				img: `${imageOptimazerUrl}width=100,quality=50,format=webp/${src}`,
+				img: `${imageOptimazerUrl}width=120,quality=60,format=webp/${src}`,
 				webp: [
-					{ src: `${imageOptimazerUrl}width=100,quality=50,format=webp/${src}`, w: 100 }
+					{ src: `${imageOptimazerUrl}width=120,quality=60,format=webp/${src}`, w: 120 }
 				],
 				jpeg: [
-					{ src: `${imageOptimazerUrl}width=100,quality=50,format=jpeg/${src}`, w: 100 }
+					{ src: `${imageOptimazerUrl}width=120,quality=60,format=jpeg/${src}`, w: 120 }
 				],
 				failback: src,
 				alt: '',
