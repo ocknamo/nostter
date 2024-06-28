@@ -16,14 +16,17 @@
 		: ({
 				img: `${imageOptimazerUrl}width=60,quality=50,format=webp/${src}`,
 				webp: [
-					{ src: `${imageOptimazerUrl}width=60,quality=50,format=webp/${src}`, w: 60 },
+					{ src: `${imageOptimazerUrl}width=60,quality=50,format=webp/${src}`, w: 60 }
 				],
 				jpeg: [
-					{ src: `${imageOptimazerUrl}width=60,quality=50,format=jpeg/${src}`, w: 60 },
+					{ src: `${imageOptimazerUrl}width=60,quality=50,format=jpeg/${src}`, w: 60 }
 				],
 				failback: src,
 				alt: '',
-				blur: true
+				blur: true,
+				placeholder: {
+					color: '#c5c5c5'
+				}
 		  } as ImageSrc);
 </script>
 
