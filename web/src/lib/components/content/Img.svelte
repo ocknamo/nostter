@@ -16,16 +16,14 @@
 	};
 
 	let imageSrc: ImageSrc = {
-		img: `${imageOptimazerUrl}width=1280,quality=80,format=webp/${src}`,
+		img: `${imageOptimazerUrl}width=1000,quality=50,format=webp/${src}`,
 		webp: [
-			{ src: `${imageOptimazerUrl}width=1280,quality=70,format=webp/${src}`, w: 1280 },
-			{ src: `${imageOptimazerUrl}width=640,quality=50,format=webp/${src}`, w: 640 },
-			{ src: `${imageOptimazerUrl}width=320,quality=50,format=webp/${src}`, w: 320 }
+			{ src: `${imageOptimazerUrl}width=1000,quality=50,format=webp/${src}`, w: 1000 },
+			{ src: `${imageOptimazerUrl}width=500,quality=50,format=webp/${src}`, w: 500 }
 		],
 		jpeg: [
-			{ src: `${imageOptimazerUrl}width=1280,quality=70,format=jpeg/${src}`, w: 1280 },
-			{ src: `${imageOptimazerUrl}width=640,quality=50,format=jpeg/${src}`, w: 640 },
-			{ src: `${imageOptimazerUrl}width=320,quality=50,format=jpeg/${src}`, w: 320 }
+			{ src: `${imageOptimazerUrl}width=1000,quality=50,format=jpeg/${src}`, w: 1000 },
+			{ src: `${imageOptimazerUrl}width=500,quality=50,format=jpeg/${src}`, w: 500 }
 		],
 		failback: src,
 		alt: src,

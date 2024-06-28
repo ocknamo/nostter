@@ -14,16 +14,12 @@
 				alt: ''
 		  }
 		: ({
-				img: `${imageOptimazerUrl}width=120,quality=70,format=webp/${src}`,
+				img: `${imageOptimazerUrl}width=60,quality=50,format=webp/${src}`,
 				webp: [
-					{ src: `${imageOptimazerUrl}width=32,quality=50,format=webp/${src}`, w: 32 },
-					{ src: `${imageOptimazerUrl}width=64,quality=70,format=webp/${src}`, w: 64 },
-					{ src: `${imageOptimazerUrl}width=120,quality=70,format=webp/${src}`, w: 120 }
+					{ src: `${imageOptimazerUrl}width=60,quality=50,format=webp/${src}`, w: 60 },
 				],
 				jpeg: [
-					{ src: `${imageOptimazerUrl}width=32,quality=50,format=webp/${src}`, w: 32 },
-					{ src: `${imageOptimazerUrl}width=64,quality=70,format=webp/${src}`, w: 64 },
-					{ src: `${imageOptimazerUrl}width=120,quality=70,format=jpeg/${src}`, w: 120 }
+					{ src: `${imageOptimazerUrl}width=60,quality=50,format=jpeg/${src}`, w: 60 },
 				],
 				failback: src,
 				alt: '',
