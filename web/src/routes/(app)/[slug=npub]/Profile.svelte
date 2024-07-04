@@ -7,7 +7,7 @@
 	import { rxNostr } from '$lib/timelines/MainTimeline';
 	import { BadgeApi, type Badge } from '$lib/BadgeApi';
 	import { newUrl } from '$lib/Helper';
-	import { robohash, type Metadata, alternativeName } from '$lib/Items';
+	import { type Metadata, alternativeName } from '$lib/Items';
 	import { pubkey as authorPubkey, rom } from '$lib/stores/Author';
 	import { developerMode } from '$lib/stores/Preference';
 	import ZapButton from '$lib/components/ZapButton.svelte';
@@ -20,9 +20,10 @@
 	import UserStatus from '$lib/components/UserStatus.svelte';
 	import ReplaceableEventsJson from '$lib/components/ReplaceableEventsJson.svelte';
 	import Content from '$lib/components/Content.svelte';
-	import IconTool from '@tabler/icons-svelte/dist/svelte/icons/IconTool.svelte';
 	import IconLink from '@tabler/icons-svelte/dist/svelte/icons/IconLink.svelte';
 	import ProfileMenuButton from '$lib/components/ProfileMenuButton.svelte';
+	import ProfileIcon from '$lib/components/profile/ProfileIcon.svelte';
+	import { goto } from '$app/navigation';
 
 	export let slug: string;
 	export let pubkey: string;
@@ -89,30 +90,27 @@
 <div class="user-info">
 	<div class="profile">
 		<div class="actions">
-			<div class="picture-wrapper">
-				<img src={metadata?.picture ?? robohash(pubkey)} alt="" />
+			<div class="picture">
+				<ProfileIcon {pubkey} />
 			</div>
 			<div class="buttons">
 				{#if !$rom && pubkey !== undefined}
-					{#if pubkey === $authorPubkey}
-						<div class="profile-editor">
-							<a href="/profile">
-								<IconTool />
-							</a>
-						</div>
-					{/if}
 					<div class="mute">
 						<MuteButton tagName="p" tagContent={pubkey} />
 					</div>
-					<div class="mute">
+					<div class="zap">
 						<ZapButton {pubkey} />
 					</div>
-					{#if metadata !== undefined}
-						<div>
-							<ProfileMenuButton event={metadata.event} />
-						</div>
+					<div>
+						<ProfileMenuButton {pubkey} />
+					</div>
+					{#if pubkey === $authorPubkey}
+						<button on:click={async () => await goto('/profile')}>
+							{$_('pages.profile_edit')}
+						</button>
+					{:else}
+						<FollowButton {pubkey} />
 					{/if}
-					<FollowButton {pubkey} />
 				{/if}
 			</div>
 		</div>
@@ -168,9 +166,6 @@
 	</div>
 	<nav>
 		<div>
-			<a href="/{slug}/relays">{$_('pages.relays')}</a>
-		</div>
-		<div>
 			<a href="/{slug}/media">{$_('pages.media')}</a>
 		</div>
 		<div>
@@ -223,14 +218,14 @@
 		margin-top: calc(-100px + 2rem);
 	}
 
-	.profile img {
+	.picture {
+		min-width: 128px;
 		width: 128px;
 		height: 128px;
+		object-fit: cover;
+
 		border: 4px solid var(--surface);
 		border-radius: 50%;
-		margin-right: 12px;
-		object-fit: cover;
-		position: relative;
 		background-color: var(--surface);
 	}
 
@@ -262,9 +257,18 @@
 
 	.actions .buttons {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: center;
-		justify-content: start;
+		justify-content: flex-end;
 		gap: 1rem;
+	}
+
+	.actions .buttons div {
+		background-color: var(--surface);
+		border: 1px solid var(--accent-surface);
+		border-radius: 50%;
+		width: 36px;
+		height: 36px;
 	}
 
 	.profile .actions {

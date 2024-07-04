@@ -47,6 +47,7 @@
 		"@svelteuidev/composables": "^0.15.4",
 		"@svelteuidev/core": "^0.15.4",
 		"@tabler/icons-svelte": "^2.38.0",
+		"@tabler/icons-webfont": "^3.8.0",
 		"emoji-kitchen-mart": "^6.0.4",
 		"escape-string-regexp": "^5.0.0",
 		"light-bolt11-decoder": "^3.1.1",
@@ -56,6 +57,6 @@
 		"rx-nostr": "^2.7.3",
 		"rxjs": "^7.8.1",
 		"svelte-i18n": "^4.0.0",
-		"svelte-remote-image": "^0.1.1"
+		"svelte-remote-image": "^0.1.3"
 	}
 }
