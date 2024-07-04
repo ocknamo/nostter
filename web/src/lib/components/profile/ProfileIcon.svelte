@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { metadataStore } from '$lib/cache/Events';
 	import { robohash } from '$lib/Items';
+	import Picture from '../content/Picture.svelte';
 
 	export let pubkey: string;
 	export let width = '100%';
@@ -16,18 +17,17 @@
 	};
 </script>
 
-<img
+<!-- TODO: update Picture for alt, title and onError -->
+<Picture
+	src={metadata?.picture ?? robohash(pubkey)}
+	{pubkey}
+	style="width: {width}; height: {height};border-radius: 50%;object-fit: cover;vertical-align: text-bottom;"
+	on:error={onError}
+/>
+<!-- <img
 	src={metadata?.picture ?? robohash(pubkey)}
 	alt={name}
 	title={tooltip ? name : ''}
 	style="width: {width}; height: {height};"
 	on:error={onError}
-/>
-
-<style>
-	img {
-		border-radius: 50%;
-		object-fit: cover;
-		vertical-align: text-bottom;
-	}
-</style>
+/> -->

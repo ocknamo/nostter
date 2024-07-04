@@ -1,11 +1,10 @@
 <script lang="ts">
 	import { imageOptimazerUrl } from '$lib/Constants';
 	import { robohash } from '$lib/Items';
-	import { formatStyleFromObject } from '$lib/styles/FormatStyleFromObject';
 	import { Image, type ImageSrc } from 'svelte-remote-image';
 	export let src: string | undefined = undefined;
 	export let pubkey: string;
-	export let style = {};
+	export let style = '';
 
 	$: imageSrc = !src
 		? {
@@ -27,4 +26,4 @@
 		  } as ImageSrc);
 </script>
 
-<Image src={imageSrc} style={formatStyleFromObject(style)} />
+<Image src={imageSrc} {style} />
