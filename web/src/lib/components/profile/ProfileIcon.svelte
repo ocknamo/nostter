@@ -19,7 +19,7 @@
 
 <!-- TODO: update Picture for alt, title and onError -->
 <Picture
-	src={metadata?.picture ?? robohash(pubkey)}
+	src={metadata?.picture}
 	{pubkey}
 	style="width: {width}; height: {height};border-radius: 50%;object-fit: cover;vertical-align: text-bottom;"
 	on:error={onError}

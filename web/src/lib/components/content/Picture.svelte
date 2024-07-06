@@ -9,7 +9,7 @@
 	$: imageSrc = !src
 		? {
 				img: robohash(pubkey),
-				failback: robohash(pubkey),
+				failback: [robohash(pubkey)],
 				alt: ''
 		  }
 		: ({
@@ -20,7 +20,7 @@
 				jpeg: [
 					{ src: `${imageOptimazerUrl}width=120,quality=60,format=jpeg/${src}`, w: 120 }
 				],
-				failback: src,
+				failback: [src, robohash(pubkey)],
 				alt: '',
 				blur: false
 		  } as ImageSrc);

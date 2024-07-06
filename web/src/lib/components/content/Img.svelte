@@ -24,7 +24,7 @@
 			{ src: `${imageOptimazerUrl}width=1000,quality=50,format=jpeg/${src}`, w: 1000 },
 			{ src: `${imageOptimazerUrl}width=500,quality=50,format=jpeg/${src}`, w: 500 }
 		],
-		failback: src,
+		failback: [src],
 		alt: src,
 		blur: false
 	};
