@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { metadataStore } from '$lib/cache/Events';
-	import { robohash } from '$lib/Items';
 	import Picture from '../content/Picture.svelte';
 
 	export let pubkey: string;
@@ -11,10 +10,6 @@
 	$: metadata = $metadataStore.get(pubkey);
 	$: name = metadata?.displayName ?? '';
 
-	const onError = (event: Event) => {
-		const img = event.target as HTMLImageElement;
-		img.src = robohash(pubkey);
-	};
 </script>
 
 <Picture
@@ -23,5 +18,4 @@
 	style="width: {width}; height: {height};border-radius: 50%;object-fit: cover;vertical-align: text-bottom;"
 	alt={name}
 	title={tooltip ? name : ''}
-	on:error={onError}
 />
