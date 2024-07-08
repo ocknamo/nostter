@@ -5,12 +5,13 @@
 	export let src: string | undefined = undefined;
 	export let pubkey: string;
 	export let style = '';
+	export let alt = '';
+	export let title = '';
 
 	$: imageSrc = !src
 		? {
 				img: robohash(pubkey),
-				failback: [robohash(pubkey)],
-				alt: ''
+				failback: [robohash(pubkey)]
 		  }
 		: ({
 				img: `${imageOptimazerUrl}width=120,quality=60,format=webp/${src}`,
@@ -21,9 +22,8 @@
 					{ src: `${imageOptimazerUrl}width=120,quality=60,format=jpeg/${src}`, w: 120 }
 				],
 				failback: [src, robohash(pubkey)],
-				alt: '',
 				blur: false
 		  } as ImageSrc);
 </script>
 
-<Image src={imageSrc} {style} />
+<Image src={imageSrc} {alt} {title} {style} />

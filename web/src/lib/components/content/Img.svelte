@@ -25,13 +25,12 @@
 			{ src: `${imageOptimazerUrl}width=500,quality=50,format=jpeg/${src}`, w: 500 }
 		],
 		failback: [src],
-		alt: src,
 		blur: false
 	};
 </script>
 
 {#if /\.(avif|jpg|jpeg|png|webp)$/i.test(pathname)}
-	<Image src={imageSrc} style={formatStyleFromObject(imgStyleObj)} />
+	<Image src={imageSrc} alt={src} style={formatStyleFromObject(imgStyleObj)} />
 {:else if /\.(apng|gif|bmp)$/i.test(pathname)}
 	<img style={formatStyleFromObject(imgStyleObj)} {src} alt={src} />
 {/if}
