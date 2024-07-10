@@ -8,6 +8,15 @@
 	export let style = '';
 	export let alt = '';
 	export let title = '';
+	export let size: string = 'm';
+
+	const pictureSizeMap: Record<string, number> = {
+		s: 40,
+		m: 120,
+		l: 320
+	};
+
+	const sizeNum = pictureSizeMap[size] ?? pictureSizeMap['m'];
 
 	$: imageSrc = getImageSrc(src);
 
@@ -21,12 +30,18 @@
 			} as ImageSrc;
 		} else if (/\.(avif|jpg|jpeg|png|webp)$/i.test(url.pathname)) {
 			return {
-				img: `${imageOptimazerUrl}width=120,quality=60,format=webp/${src}`,
+				img: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=webp/${src}`,
 				webp: [
-					{ src: `${imageOptimazerUrl}width=120,quality=60,format=webp/${src}`, w: 120 }
+					{
+						src: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=webp/${src}`,
+						w: sizeNum
+					}
 				],
 				jpeg: [
-					{ src: `${imageOptimazerUrl}width=120,quality=60,format=jpeg/${src}`, w: 120 }
+					{
+						src: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=jpeg/${src}`,
+						w: sizeNum
+					}
 				],
 				failback: [src, robohash(pubkey)],
 				blur: false
