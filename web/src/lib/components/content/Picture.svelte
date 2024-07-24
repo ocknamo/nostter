@@ -42,7 +42,7 @@
 			} as ImgSrc;
 		} else {
 			return {
-				img: url.href,
+				img: src,
 				fallback: [robohash(pubkey)]
 			} as ImgSrc;
 		}
