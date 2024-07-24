@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { imageOptimazerUrl } from '$lib/Constants';
 	import { formatStyleFromObject } from '$lib/styles/FormatStyleFromObject';
-	import { Image, type ImageSrc } from 'svelte-remote-image';
+	import { Img, type ImgSrc } from 'svelte-remote-image';
 	export let src: string;
 	export let pathname: string;
 
@@ -14,23 +14,18 @@
 		'vertical-align': 'middle'
 	};
 
-	let imageSrc: ImageSrc = {
+	let imageSrc: ImgSrc = {
 		img: `${imageOptimazerUrl}width=1000,quality=50,format=webp/${src}`,
-		webp: [
+		srcsets: [
 			{ src: `${imageOptimazerUrl}width=1000,quality=50,format=webp/${src}`, w: 1000 },
 			{ src: `${imageOptimazerUrl}width=500,quality=50,format=webp/${src}`, w: 500 }
 		],
-		jpeg: [
-			{ src: `${imageOptimazerUrl}width=1000,quality=50,format=jpeg/${src}`, w: 1000 },
-			{ src: `${imageOptimazerUrl}width=500,quality=50,format=jpeg/${src}`, w: 500 }
-		],
-		failback: [src],
-		blur: false
+		fallback: [src]
 	};
 </script>
 
 {#if /\.(avif|jpg|jpeg|png|webp)$/i.test(pathname)}
-	<Image src={imageSrc} alt={src} style={formatStyleFromObject(imgStyleObj)} />
+	<Img src={imageSrc} alt={src} style={formatStyleFromObject(imgStyleObj)} />
 {:else if /\.(apng|gif|bmp)$/i.test(pathname)}
 	<img style={formatStyleFromObject(imgStyleObj)} {src} alt={src} />
 {/if}

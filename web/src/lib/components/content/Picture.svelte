@@ -2,7 +2,7 @@
 	import { imageOptimazerUrl } from '$lib/Constants';
 	import { newUrl } from '$lib/Helper';
 	import { robohash } from '$lib/Items';
-	import { Image, type ImageSrc } from 'svelte-remote-image';
+	import { Img, type ImgSrc } from 'svelte-remote-image';
 	export let src: string | undefined = undefined;
 	export let pubkey: string;
 	export let style = '';
@@ -18,41 +18,35 @@
 
 	const sizeNum = pictureSizeMap[size] ?? pictureSizeMap['m'];
 
-	$: imageSrc = getImageSrc(src);
+	$: imgSrc = getImageSrc(src);
 
-	function getImageSrc(src: string | undefined): ImageSrc {
+	function getImageSrc(src: string | undefined): ImgSrc {
 		const url = src ? newUrl(src) : undefined;
 
 		if (!url) {
 			return {
 				img: robohash(pubkey),
-				failback: [robohash(pubkey)]
-			} as ImageSrc;
+				fallback: [robohash(pubkey)]
+			} as ImgSrc;
 		} else if (/\.(avif|jpg|jpeg|png|webp)$/i.test(url.pathname)) {
 			return {
 				img: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=webp/${src}`,
-				webp: [
+				srssets: [
 					{
 						src: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=webp/${src}`,
 						w: sizeNum
 					}
 				],
-				jpeg: [
-					{
-						src: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=jpeg/${src}`,
-						w: sizeNum
-					}
-				],
-				failback: [src, robohash(pubkey)],
+				fallback: [src, robohash(pubkey)],
 				blur: false
-			} as ImageSrc;
+			} as ImgSrc;
 		} else {
 			return {
 				img: url.href,
-				failback: [robohash(pubkey)]
-			} as ImageSrc;
+				fallback: [robohash(pubkey)]
+			} as ImgSrc;
 		}
 	}
 </script>
 
-<Image src={imageSrc} {alt} {title} {style} />
+<Img src={imgSrc} {alt} {title} {style} />
