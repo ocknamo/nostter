@@ -15,10 +15,10 @@
 	};
 
 	let imageSrc: ImgSrc = {
-		img: `${imageOptimazerUrl}width=1000,quality=50,format=webp/${src}`,
+		img: `${imageOptimazerUrl}width=800,quality=60,format=webp/${src}`,
 		srcsets: [
-			{ src: `${imageOptimazerUrl}width=1000,quality=50,format=webp/${src}`, w: 1000 },
-			{ src: `${imageOptimazerUrl}width=500,quality=50,format=webp/${src}`, w: 500 }
+			{ src: `${imageOptimazerUrl}width=800,quality=60,format=webp/${src}`, w: 800 },
+			{ src: `${imageOptimazerUrl}width=400,quality=60,format=webp/${src}`, w: 400 }
 		],
 		fallback: [src]
 	};
