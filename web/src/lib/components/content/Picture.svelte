@@ -30,7 +30,7 @@
 			} as ImgSrc;
 		} else if (/\.(avif|jpg|jpeg|png|webp)$/i.test(url.pathname)) {
 			return {
-				img: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=webp/${src}`,
+				img: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=jpeg/${src}`,
 				srssets: [
 					{
 						src: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=webp/${src}`,
