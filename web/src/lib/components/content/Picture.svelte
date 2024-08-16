@@ -3,7 +3,8 @@
 	import { newUrl } from '$lib/Helper';
 	import { robohash } from '$lib/Items';
 	import { imageOptimization } from '$lib/stores/Preference';
-	import { Img, type ImgSrc } from 'svelte-remote-image';
+	import Image from '../shared/Image.svelte';
+	import { type ImageSrc } from '../shared/Image';
 	export let src: string | undefined = undefined;
 	export let pubkey: string;
 	export let style = '';
@@ -20,16 +21,16 @@
 	const sizeNum = pictureSizeMap[size] ?? pictureSizeMap['m'];
 
 	let optimize = $imageOptimization;
-	$: imgSrc = getImageSrc(src);
+	$: imageSrc = getImageSrc(src);
 
-	function getImageSrc(src: string | undefined): ImgSrc {
+	function getImageSrc(src: string | undefined): ImageSrc {
 		const url = src ? newUrl(src) : undefined;
 
 		if (!url) {
 			return {
 				img: robohash(pubkey),
 				fallback: [robohash(pubkey)]
-			} as ImgSrc;
+			} as ImageSrc;
 		} else if (optimize && /\.(avif|jpg|jpeg|png|webp)$/i.test(url.pathname)) {
 			return {
 				img: `${imageOptimazerUrl}width=${sizeNum},quality=60,format=jpeg/${src}`,
@@ -40,14 +41,14 @@
 					}
 				],
 				fallback: [src, robohash(pubkey)]
-			} as ImgSrc;
+			} as ImageSrc;
 		} else {
 			return {
 				img: src,
 				fallback: [robohash(pubkey)]
-			} as ImgSrc;
+			} as ImageSrc;
 		}
 	}
 </script>
 
-<Img src={imgSrc} {alt} {title} {style} />
+<Image src={imageSrc} {alt} {title} {style} />

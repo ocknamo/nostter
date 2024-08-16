@@ -2,7 +2,8 @@
 	import { imageOptimazerUrl } from '$lib/Constants';
 	import { imageOptimization } from '$lib/stores/Preference';
 	import { formatStyleFromObject } from '$lib/styles/FormatStyleFromObject';
-	import { Img, type ImgSrc } from 'svelte-remote-image';
+	import Image from '../shared/Image.svelte';
+	import { type ImageSrc } from '../shared/Image';
 	export let src: string;
 	export let pathname: string;
 
@@ -15,7 +16,7 @@
 		'vertical-align': 'middle'
 	};
 
-	let imageSrc: ImgSrc = {
+	let imageSrc: ImageSrc = {
 		img: `${imageOptimazerUrl}width=800,quality=60,format=jpeg/${src}`,
 		srcsets: [
 			{ src: `${imageOptimazerUrl}width=800,quality=60,format=webp/${src}`, w: 800 },
@@ -28,7 +29,7 @@
 </script>
 
 {#if optimize && /\.(avif|jpg|jpeg|png|webp)$/i.test(pathname)}
-	<Img src={imageSrc} alt={src} style={formatStyleFromObject(imgStyleObj)} />
+	<Image src={imageSrc} alt={src} style={formatStyleFromObject(imgStyleObj)} />
 {:else}
 	<img style={formatStyleFromObject(imgStyleObj)} {src} alt={src} />
 {/if}
